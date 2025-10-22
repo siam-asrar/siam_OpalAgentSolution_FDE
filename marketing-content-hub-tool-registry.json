@@ -1,0 +1,88 @@
+{
+  "name": "Marketing Content Hub Connector",
+  "description": "A connector exposing endpoints for listing, searching, retrieving, and drafting content items from a CMS or marketing content repository.",
+  "version": "1.0.0",
+  "type": "custom",
+  "owner": "Forward Deployed Engineering",
+  "discovery": {
+    "url": "${URL}/api/discovery",
+    "format": "opal.discovery.v1"
+  },
+  "tools": [
+    {
+      "name": "list_content",
+      "description": "Fetch a list of all content items from the CMS",
+      "parameters": [],
+      "endpoint": "${URL}/api/tools/list-content",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "get_content",
+      "description": "Retrieve a specific content item by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Unique content ID"
+        }
+      ],
+      "endpoint": "${URL}/api/tools/get-content",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "search_content",
+      "description": "Search content by keyword",
+      "parameters": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "Search keyword"
+        }
+      ],
+      "endpoint": "${URL}/api/tools/search-content",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "create_draft",
+      "description": "Create a new content draft entry",
+      "parameters": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Title of draft"
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "description": "Body text"
+        }
+      ],
+      "endpoint": "${URL}/api/tools/create-draft",
+      "http_method": "POST",
+      "auth_requirements": []
+    }
+  ],
+  "capabilities": {
+    "auth": {
+      "required": false,
+      "methods_supported": []
+    },
+    "rate_limits": {
+      "requests_per_minute": 60,
+      "requests_per_day": 1000
+    },
+    "logging": {
+      "enabled": true,
+      "retention_days": 7
+    }
+  },
+  "metadata": {
+    "category": "Content Management",
+    "labels": ["CMS", "Marketing", "Connector"],
+    "created_at": "2025-10-15T00:00:00Z",
+    "updated_at": "2025-10-15T00:00:00Z"
+  }
+}

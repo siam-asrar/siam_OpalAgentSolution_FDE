@@ -1,0 +1,112 @@
+{
+  "workflow_name": "Marketing Content Automation - Social Poster & Follower",
+  "description": "Automates marketing content scheduling, posting, and engagement using the Marketing Content Hub Connector tools deployed on Vercel.",
+  "trigger": {
+    "type": "manual",
+    "description": "Triggered by a marketing manager or Opal agent when a new campaign is approved."
+  },
+  "agents": [
+    {
+      "id": "main_agent",
+      "name": "Marketing Content Main Agent",
+      "role": "Coordinator",
+      "goals": [
+        "Oversee campaign content flow from CMS to social platforms.",
+        "Coordinate specialized agents and approve social content before posting."
+      ],
+      "tools": [],
+      "actions": [
+        {
+          "type": "invoke_agent",
+          "agent": "content_retriever_agent",
+          "input": { "topic": "product launch", "limit": 3 },
+          "output_key": "cms_content"
+        },
+        {
+          "type": "invoke_agent",
+          "agent": "content_summarizer_agent",
+          "input": { "contents": "{{cms_content}}" },
+          "output_key": "summaries"
+        },
+        {
+          "type": "invoke_agent",
+          "agent": "social_poster_agent",
+          "input": {
+            "summaries": "{{summaries}}",
+            "repeat": true,
+            "days": 7,
+            "platforms": ["twitter", "linkedin"]
+          },
+          "output_key": "scheduled_posts"
+        },
+        {
+          "type": "invoke_agent",
+          "agent": "social_follower_agent",
+          "input": {
+            "posts": "{{scheduled_posts}}",
+            "respond": true
+          },
+          "output_key": "engagement_logs"
+        },
+        {
+          "type": "notify_human",
+          "message": "Campaign workflow complete. Engagement summary ready.",
+          "attachments": ["{{engagement_logs}}"]
+        }
+      ]
+    },
+    {
+      "id": "content_retriever_agent",
+      "name": "CMS Content Retriever Agent",
+      "role": "Specialized Agent",
+      "tools": [
+        {
+          "name": "get-cms-content",
+          "url": "${URL}/api/tools/get-cms-content"
+        }
+      ]
+    },
+    {
+      "id": "content_summarizer_agent",
+      "name": "Content Summarizer Agent",
+      "role": "Specialized Agent",
+      "tools": [
+        {
+          "name": "summarize-content",
+          "url": "${URL}/api/tools/summarize-content"
+        }
+      ]
+    },
+    {
+      "id": "social_poster_agent",
+      "name": "Social Poster Agent",
+      "role": "Specialized Agent",
+      "tools": [
+        {
+          "name": "schedule-social-post",
+          "url": "${URL}/api/tools/schedule-social-post"
+        }
+      ]
+    },
+    {
+      "id": "social_follower_agent",
+      "name": "Social Follower Agent",
+      "role": "Specialized Agent",
+      "tools": [
+        {
+          "name": "engage-post-followup",
+          "url": "${URL}/api/tools/engage-post-followup"
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "campaign_name": "Autumn Product Launch",
+    "primary_topic": "AI-powered Marketing Tools"
+  },
+  "metadata": {
+    "created_by": "siam.asrar",
+    "version": "1.0.0",
+    "environment": "staging"
+  }
+}
