@@ -1,0 +1,176 @@
+{
+  "name": "Marketing Content Hub Connector",
+  "description": "Connector with CMS and social posting tools (OAuth-ready for Twitter/X)",
+  "version": "1.2.0",
+  "type": "custom",
+  "owner": "Forward Deployed Engineering",
+  "discovery": {
+    "url": "https://opal-m1.vercel.app/api/discovery/api/discovery",
+    "format": "opal.discovery.v1"
+  },
+  "tools": [
+    {
+      "name": "list_content",
+      "description": "Fetch a list of all content items",
+      "parameters": [],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/list-content",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "get_content",
+      "description": "Retrieve a specific content item by ID",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Unique content ID"
+        }
+      ],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/get-content",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "search_content",
+      "description": "Search content by keyword",
+      "parameters": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "Search keyword"
+        }
+      ],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/search-content",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "create_draft",
+      "description": "Create a new content draft entry",
+      "parameters": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Title of draft"
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "description": "Body text"
+        }
+      ],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/create-draft",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "schedule_social_post",
+      "description": "Schedule or post social content; supports repeat intervals and human approval",
+      "parameters": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "twitter | mastodon | generic"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "repeat",
+          "type": "boolean"
+        },
+        {
+          "name": "days",
+          "type": "integer"
+        },
+        {
+          "name": "approved",
+          "type": "boolean"
+        }
+      ],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/schedule-social-post",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "approve_scheduled_post",
+      "description": "Approve a pending scheduled social post (human-in-loop)",
+      "parameters": [
+        {
+          "name": "jobId",
+          "type": "string"
+        },
+        {
+          "name": "approve",
+          "type": "boolean"
+        }
+      ],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/approve-scheduled-post",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "list_scheduled",
+      "description": "List scheduled jobs",
+      "parameters": [],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/list-scheduled",
+      "http_method": "POST",
+      "auth_requirements": []
+    },
+    {
+      "name": "engage_post_followup",
+      "description": "Post a follow-up reply to an existing post and optionally repeat",
+      "parameters": [
+        {
+          "name": "platform",
+          "type": "string"
+        },
+        {
+          "name": "original_post_id",
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "repeat",
+          "type": "boolean"
+        },
+        {
+          "name": "days",
+          "type": "integer"
+        }
+      ],
+      "endpoint": "https://opal-m1.vercel.app/api/discovery/api/tools/engage-post-followup",
+      "http_method": "POST",
+      "auth_requirements": []
+    }
+  ],
+  "capabilities": {
+    "auth": {
+      "required": false,
+      "methods_supported": []
+    },
+    "rate_limits": {
+      "requests_per_minute": 60,
+      "requests_per_day": 1000
+    },
+    "logging": {
+      "enabled": true,
+      "retention_days": 7
+    }
+  },
+  "metadata": {
+    "category": "Content & Social",
+    "labels": [
+      "CMS",
+      "Social",
+      "Connector"
+    ],
+    "created_at": "2025-10-15T00:00:00Z",
+    "updated_at": "2025-10-15T00:00:00Z"
+  }
+}

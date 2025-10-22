@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  marketing-api:
+    build:
+      context: ./server
+    container_name: marketing-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+
+  ngrok:
+    image: wernight/ngrok
+    container_name: ngrok-tunnel
+    depends_on:
+      - marketing-api
+    environment:
+      - NGROK_AUTHTOKEN=YOUR_NGROK_AUTH_TOKEN
+      - NGROK_PORT=marketing-api:8000
+    command: http marketing-api:8000

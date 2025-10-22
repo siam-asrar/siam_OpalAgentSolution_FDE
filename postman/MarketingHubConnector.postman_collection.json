@@ -1,0 +1,75 @@
+{
+  "info": {
+    "name": "Marketing Hub Connector - Final",
+    "_postman_id": "final-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Content",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "https://abc123.ngrok.io/api/tools/list-content"
+        }
+      }
+    },
+    {
+      "name": "Schedule Social Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"platform\": \"twitter\", \"content\": \"Hello from Opal\", \"repeat\": true, \"days\": 7, \"approved\": false}"
+        },
+        "url": {
+          "raw": "https://abc123.ngrok.io/api/tools/schedule-social-post"
+        }
+      }
+    },
+    {
+      "name": "Approve Scheduled Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"jobId\": \"job_123456\", \"approve\": true}"
+        },
+        "url": {
+          "raw": "https://abc123.ngrok.io/api/tools/approve-scheduled-post"
+        }
+      }
+    },
+    {
+      "name": "Engage Followup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"platform\": \"twitter\", \"original_post_id\": \"12345\", \"content\": \"Thanks!\"}"
+        },
+        "url": {
+          "raw": "https://abc123.ngrok.io/api/tools/engage-post-followup"
+        }
+      }
+    }
+  ]
+}

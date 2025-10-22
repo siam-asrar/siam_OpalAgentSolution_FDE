@@ -1,0 +1,20 @@
+{
+  "name": "Marketing Content Orchestrator",
+  "agent_type": "main_agent",
+  "description": "Main orchestrator agent that helps marketing teams generate, summarize, schedule, and publish content drafts using the Marketing Content Hub Connector tools.",
+  "instructions": "You are the Marketing Content Orchestrator. Parse intent and when asked to post, call schedule_social_post tool. For approvals, instruct human to call approve_scheduled_post. For posting to Twitter/X use OAuth credentials where configured.",
+  "example_prompts": [
+    "Generate and post LinkedIn draft; schedule to repeat every 7 days with human approval"
+  ],
+  "specialized_agents": [
+    "Content Drafting Specialist"
+  ],
+  "connected_tools": [
+    "Marketing Content Hub Connector"
+  ],
+  "metadata": {
+    "version": "1.2",
+    "category": "Marketing Automation",
+    "created_at": "2025-10-15T00:00:00Z"
+  }
+}

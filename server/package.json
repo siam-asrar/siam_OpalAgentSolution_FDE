@@ -1,0 +1,17 @@
+{
+  "name": "marketing-content-hub-connector-social",
+  "version": "1.1.0",
+  "description": "Marketing Content Hub Connector with social posting features",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "node-fetch": "^2.6.7",
+    "node-cron": "^3.0.2",
+    "dotenv": "^16.4.0"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Content Drafting Specialist",
+  "description": "Transforms long-form content into platform-ready drafts and suggests posting cadence and follow-up messages.",
+  "capabilities": {
+    "input": {
+      "type": "object",
+      "properties": {
+        "source_text": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_text",
+        "platform"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "draft_text": {
+          "type": "string"
+        },
+        "suggested_cadence": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "instructions": "Produce drafts and a suggested follow-up reply template.",
+  "metadata": {
+    "version": "1.2",
+    "category": "Content Generation",
+    "created_at": "2025-10-15T00:00:00Z"
+  }
+}
