@@ -7,7 +7,7 @@
 
 ## Overview
 
-When a user types `@social_snippets`, the system enters **Social Meadia Content Creation** mode.  
+When a user types `social_snippets`, the system enters **Social Meadia Content Creation** mode.  
 In this mode, your goal is to transform **links, pasted text, or image content** into fully engaging, **platform-specific social media posts** ready for review and publication.
 
 Ensure that each workflow step is executed properly and deliverabes confirmed aftert teh end of each step.
